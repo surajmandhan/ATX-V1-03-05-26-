@@ -14,30 +14,30 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchSellerProduct = async () => {
-    try {
-      const token = await getToken();
-
-      const { data } = await axios.get("/api/product/seller-list", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      if (data.success) {
-        setProducts(data.products);
-        setLoading(false);
-      } else {
-        toast.error(data.message);
-      }
-    } catch (error) {
-      toast.error(error.message);
-    }
-  };
-
   useEffect(() => {
+    const fetchSellerProduct = async () => {
+      try {
+        const token = await getToken();
+
+        const { data } = await axios.get("/api/product/seller-list", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (data.success) {
+          setProducts(data.products);
+          setLoading(false);
+        } else {
+          toast.error(data.message);
+        }
+      } catch (error) {
+        toast.error(error.message);
+      }
+    };
+
     if (user) {
       fetchSellerProduct();
     }
-  }, [user]);
+  }, [user, getToken]);
 
   return (
     <div className="flex-1 min-h-screen flex flex-col justify-between">

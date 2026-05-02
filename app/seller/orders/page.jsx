@@ -14,30 +14,30 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchSellerOrders = async () => {
-    try {
-      const token = await getToken();
-
-      const { data } = await axios.get("/api/order/seller-orders", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      if (data.success) {
-        setOrders(data.orders);
-        setLoading(false);
-      } else {
-        toast.error(data.message);
-      }
-    } catch (error) {
-      toast.error(error.message);
-    }
-  };
-
   useEffect(() => {
+    const fetchSellerOrders = async () => {
+      try {
+        const token = await getToken();
+
+        const { data } = await axios.get("/api/order/seller-orders", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (data.success) {
+          setOrders(data.orders);
+          setLoading(false);
+        } else {
+          toast.error(data.message);
+        }
+      } catch (error) {
+        toast.error(error.message);
+      }
+    };
+
     if (user) {
       fetchSellerOrders();
     }
-  }, [user]);
+  }, [user, getToken]);
 
   return (
     <div className="flex-1 h-screen overflow-scroll flex flex-col justify-between text-sm">
