@@ -71,45 +71,25 @@ export default function AboutPage() {
         <div className="lifestyle-inner">
           <div className="lifestyle-content">
             <div className="ls-kicker">who we are</div>
-            <h3 className="ls-title">
-              ENGINEERED FOR
-              <br />
-              MODERN
-              <br />
-              RESEARCH
-            </h3>
+
 
             <p className="ls-copy">
-              ATX Research Peptides is a U.S.-based supplier dedicated to
-              delivering premium research-grade peptides to laboratories, academic
-              institutions, and biotechnology innovators.
+              ATX Research Peptides is a U.S.-based supplier dedicated to delivering premium
+              research-grade peptides to laboratories, academic institutions, and biotechnology innovators.
               <br />
               <br />
-              Our mission is simple — to provide scientists with compounds they
-              can trust. Every product is sourced with precision, handled under
+              Our mission is simple — to provide scientists with compounds they can trust. Every
+              product is sourced with precision, handled under strict protocols, and verified through
+              independent laboratory testing.
+              <br />
+              <br />
+              ATX Research Peptides is dedicated to delivering premium research-grade peptides.
+              Our mission is simple — Every product is sourced with precision, handled under
               strict protocols, and verified through independent laboratory testing.
-              <br />
-              <br />
-              As peptide research continues to expand into metabolic science,
-              regenerative biology, and longevity studies, we position ourselves
-              at the forefront by ensuring quality, consistency, and scientific
-              integrity.
             </p>
 
-            <ul className="ls-features">
-              <li>
-                <div className="ls-dot"></div>
-                <strong>Precision Sourcing</strong> — trusted U.S. suppliers
-              </li>
-              <li>
-                <div className="ls-dot"></div>
-                <strong>Scientific Integrity</strong> — research-first approach
-              </li>
-              <li>
-                <div className="ls-dot"></div>
-                <strong>Reliable Supply</strong> — consistent batch quality
-              </li>
-            </ul>
+
+
           </div>
 
           <div className="lifestyle-img-wrap">
@@ -120,56 +100,13 @@ export default function AboutPage() {
                 style={{ objectFit: "contain", width: "100%", height: "auto" }}
               />
             </div>
-            <div className="ls-badge">Trusted Lab ✓</div>
           </div>
         </div>
       </section>
 
-      {/* QUALITY SECTION */ }
-      <section className="shipping-section">
-        <div className="section-header" style={{ textAlign: "center" }}>
-          <h3>
-            QUALITY
-            <br />
-            <em>&amp; TESTING</em>
-          </h3>
-          <p>Strict protocols ensuring every compound meets research-grade standards.</p>
-        </div>
 
-        <div className="shipping-grid">
-          <div className="ship-card">
-            <div className="ship-icon">
-              <i className="fa-solid fa-flask"></i>
-            </div>
-            <div className="ship-name">Third-Party Tested</div>
-            <div className="ship-desc">Independent lab verification for every batch</div>
-          </div>
 
-          <div className="ship-card">
-            <div className="ship-icon">
-              <i className="fa-solid fa-chart-line"></i>
-            </div>
-            <div className="ship-name">98%+ Purity</div>
-            <div className="ship-desc">Verified through HPLC &amp; mass spectrometry</div>
-          </div>
 
-          <div className="ship-card">
-            <div className="ship-icon">
-              <i className="fa-solid fa-file-alt"></i>
-            </div>
-            <div className="ship-name">COA Reports</div>
-            <div className="ship-desc">Transparent documentation with each product</div>
-          </div>
-
-          <div className="ship-card">
-            <div className="ship-icon">
-              <i className="fa-solid fa-snowflake"></i>
-            </div>
-            <div className="ship-name">Cold Chain</div>
-            <div className="ship-desc">Maintained stability during shipping</div>
-          </div>
-        </div>
-      </section>
 
       {/* CATEGORIES */ }
       <section className="slider-section">
@@ -246,12 +183,8 @@ export default function AboutPage() {
               Our compounds are not approved for human or veterinary use. By
               purchasing, customers confirm they are qualified professionals
               conducting legitimate scientific research.
-              <br />
-              <br />
-              We operate under strict compliance with all applicable regulations
-              governing research compounds, ensuring ethical and responsible
-              distribution.
             </p>
+
 
             <div className="ls-warning-box">
               <i className="fa-solid fa-exclamation-triangle"></i>

@@ -73,14 +73,16 @@ export default function AllProductsPage() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8 justify-items-center">
+
           {filteredProducts && filteredProducts.length > 0 ? (
             filteredProducts.map((product, i) => (
               <a
                 key={product._id}
-                className={`atx-products-card ${renderCardClass(i)}`}
+                className={`atx-products-card plp-card ${renderCardClass(i)}`}
                 onClick={() => router.push("/product/" + product.handle)}
               >
+
                 <span className="card-chip" style={{ color: '#000' }}>{product.category || 'Peptide'}</span>
                 <div className="card-img-placeholder">
                   {product.image && product.image.length > 0 ? (

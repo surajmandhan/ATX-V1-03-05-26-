@@ -4,6 +4,8 @@ import { useAppContext } from "@/context/AppContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
+import "../home.css";
+
 
 export default function WishlistPage() {
   const { wishlist, products, isLoading } = useAppContext();
@@ -29,7 +31,8 @@ export default function WishlistPage() {
             LOADING YOUR WISHLIST...
           </div>
         ) : wishlistedProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8 justify-items-center">
+
             {wishlistedProducts.map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}

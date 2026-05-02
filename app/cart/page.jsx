@@ -84,18 +84,43 @@ export default function CartPage() {
 
       <Navbar />
 
-      <main className="flex-grow pt-40 pb-20 px-6 w-full">
-        <div className="cart-container max-w-[1280px] mx-auto">
-          <div className="cart-title">Your Cart</div>
-          <div className="cart-sub">{getCartCount()} {getCartCount() === 1 ? 'Item' : 'Items'}</div>
+      <main className="cart-main-wrapper">
+        <div className="cart-container">
+          {/* MOBILE HEADER */}
+          <div className="cart-header-mobile">
+            <button className="back-btn" onClick={() => router.back()}>
+              <i className="fa-solid fa-chevron-left"></i>
+            </button>
+            <h1 className="cart-main-title">My Cart</h1>
+            <div className="cart-header-spacer"></div>
+          </div>
+
+
+          {/* DELIVERY LOCATION */}
+          <div className="delivery-section">
+            <div className="delivery-info">
+              <span className="delivery-label">Delivery Location</span>
+              <h3 className="delivery-name">{shippingAddress ? 'Home' : 'Not Set'}</h3>
+            </div>
+            <button 
+              className="change-loc-btn"
+              onClick={() => {
+                setCurrentAddress(shippingAddress);
+                setIsAddressModalOpen(true);
+              }}
+            >
+              {shippingAddress ? 'Change Location' : 'Add Address'}
+            </button>
+          </div>
 
           <div className="cart-grid">
             {/* LEFT: CART ITEMS */}
-            <div className="flex-grow">
+            <div className="cart-items-column">
               {cartProductIds.length === 0 ? (
-                <div style={{ textAlign: "center", padding: "60px 20px", color: "rgba(255,255,255,0.5)" }}>
-                  <i className="fa-solid fa-cart-arrow-down" style={{ fontSize: "3rem", marginBottom: "20px" }}></i>
-                  <h2 className="font-['Bebas_Neue'] text-3xl tracking-widest">Your cart is currently empty.</h2>
+                <div className="empty-cart-view">
+                  <i className="fa-solid fa-cart-arrow-down"></i>
+                  <h2>Your cart is empty</h2>
+                  <Link href="/all-products" className="shop-now-btn">Shop Now</Link>
                 </div>
               ) : (
                 cartProductIds.map(itemId => {
@@ -104,73 +129,43 @@ export default function CartPage() {
                   if (!product) return null;
                   
                   const quantity = cartItems[itemId];
+                  const priceNum = parseFloat(product.price || 0);
+                  const itemTotal = (priceNum * quantity).toFixed(2);
 
                   return (
-                    <div className="cart-item" key={itemId} style={{ background: "rgba(255,255,255,0.03)", borderRadius: "20px", padding: "20px", marginBottom: "15px", border: "1px solid rgba(255,255,255,0.05)" }}>
-                      <div className="flex items-center gap-6 flex-wrap sm:flex-nowrap">
-                        <div className="w-[100px] h-[100px] bg-black/20 rounded-xl overflow-hidden flex-shrink-0 flex items-center justify-center border border-white/10">
-                          <Image src={product.image?.[0] || placeholder} alt={product.name} width={100} height={100} className="object-contain" unoptimized={true} />
+                    <div className="new-cart-item" key={itemId}>
+                      <div className="item-img-box">
+                        <Image src={product.image?.[0] || placeholder} alt={product.name} width={100} height={100} className="object-contain" unoptimized={true} />
+                      </div>
+                      <div className="item-details">
+                        <div className="item-header">
+                          <h4 className="item-title">{product.name}</h4>
+                          <button className="item-delete-btn" onClick={() => updateCartQuantity(itemId, 0)}>
+                            <i className="fa-regular fa-trash-can"></i>
+                          </button>
                         </div>
-                        <div className="flex-grow">
-                          <h4 className="font-['Bebas_Neue'] text-2xl tracking-widest text-[#e6e6eb] mb-1">{product.name}</h4>
-                          <div className="text-[#22d3ee] font-['Space_Mono'] text-lg mb-4">{product.displayPrice}</div>
-                          
-                          <div className="flex items-center gap-6">
-                            <div className="flex items-center border border-white/20 rounded-full px-2 py-1 bg-black/30">
-                              <button className="w-8 h-8 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 rounded-full transition-colors cursor-pointer" onClick={() => updateCartQuantity(itemId, quantity - 1)}>−</button>
-                              <div className="px-4 font-bold text-white min-w-[30px] text-center">{quantity}</div>
-                              <button className="w-8 h-8 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 rounded-full transition-colors cursor-pointer" onClick={() => updateCartQuantity(itemId, quantity + 1)}>+</button>
-                            </div>
-                            <div className="text-white/40 hover:text-[#ff0060] cursor-pointer transition-colors flex items-center gap-2 text-xs uppercase tracking-widest font-bold" onClick={() => updateCartQuantity(itemId, 0)}>
-                              <i className="fa-solid fa-trash-can"></i> Remove
-                            </div>
+                        <p className="item-unit-price">Price: {product.displayPrice}</p>
+                        
+                        <div className="item-actions-row">
+                          <div className="new-qty-selector">
+                            <button onClick={() => updateCartQuantity(itemId, quantity - 1)}>−</button>
+                            <span>{quantity}</span>
+                            <button onClick={() => updateCartQuantity(itemId, quantity + 1)}>+</button>
                           </div>
+                          <div className="item-total-price">{product.currency || '$'}{itemTotal}</div>
                         </div>
                       </div>
                     </div>
                   );
                 })
               )}
-
-              <Link href="/all-products" className="continue" style={{ marginTop: "30px", display: "inline-block" }}>← Continue Shopping</Link>
             </div>
 
-            {/* RIGHT: ORDER SUMMARY & ADDRESS */}
-            <div className="w-full lg:w-[450px] space-y-8">
-              {/* SHIPPING ADDRESS SECTION */}
-              {userData && (
-                <div className="bg-white/5 border border-white/10 rounded-[30px] p-8 backdrop-blur-md">
-                  <div className="flex justify-between items-center mb-6">
-                    <h3 className="font-['Bebas_Neue'] text-2xl tracking-widest text-white/80">SHIPPING ADDRESS</h3>
-                    <button 
-                      onClick={() => {
-                        setCurrentAddress(shippingAddress);
-                        setIsAddressModalOpen(true);
-                      }}
-                      className="text-[#6366f1] hover:text-[#22d3ee] font-bold text-xs tracking-widest uppercase transition-colors"
-                    >
-                      {shippingAddress ? 'CHANGE' : 'ADD ADDRESS'}
-                    </button>
-                  </div>
-
-                  {shippingAddress ? (
-                    <div className="space-y-2 font-['Space_Mono'] text-sm text-white/60">
-                      <p className="text-white font-bold">{shippingAddress.firstName} {shippingAddress.lastName}</p>
-                      <p>{shippingAddress.address1}{shippingAddress.address2 ? `, ${shippingAddress.address2}` : ''}</p>
-                      <p>{shippingAddress.city}, {shippingAddress.province} - {shippingAddress.zip}</p>
-                      <p>{shippingAddress.country}</p>
-                      <p className="pt-2 text-white/40">{shippingAddress.phone}</p>
-                    </div>
-                  ) : (
-                    <div className="py-4 text-white/30 text-center border-2 border-dashed border-white/5 rounded-2xl">
-                      No shipping address found.
-                    </div>
-                  )}
-                </div>
-              )}
-              
+            {/* RIGHT: SUMMARY & CHECKOUT */}
+            <div className="cart-summary-column">
               <OrderSummary />
             </div>
+
           </div>
         </div>
       </main>

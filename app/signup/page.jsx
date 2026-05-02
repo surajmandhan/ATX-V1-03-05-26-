@@ -40,36 +40,45 @@ export default function SignupPage() {
   return (
     <div className="home-wrapper min-h-screen flex flex-col">
       <Navbar />
-      <div className="flex-grow flex items-center justify-center pt-40 pb-20 px-6">
-        <div className="max-w-md w-full bg-gray-900/50 backdrop-blur-xl p-8 rounded-2xl border border-white/10 shadow-2xl">
+      <div className="flex-grow flex flex-col items-center pt-48 md:pt-56 pb-20 px-6 relative overflow-hidden">
+        {/* Background Decorative Blobs */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#6366f1]/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div className="max-w-sm w-full bg-[#0b0b0f]/80 backdrop-blur-2xl p-8 rounded-[2rem] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative z-10">
+          {/* Subtle top glow */}
+          <div className="absolute -top-[1px] left-10 right-10 h-[1px] bg-gradient-to-r from-transparent via-[#6366f1] to-transparent opacity-50"></div>
+
           <div className="text-center mb-8">
-            <h1 className="font-['Bebas_Neue'] text-4xl text-white tracking-wide">JOIN THE RESEARCH</h1>
-            <p className="text-white/50 font-['Space_Mono'] text-xs mt-2">Create your researcher account</p>
+            <h1 className="font-['Bebas_Neue'] text-4xl text-white tracking-[0.1em] mb-2">JOIN THE RESEARCH</h1>
+            <div className="flex items-center justify-center gap-2">
+              <div className="h-[1px] w-4 bg-[#6366f1]"></div>
+              <p className="text-white/40 font-['Space_Mono'] text-[10px] uppercase tracking-widest">New Protocol</p>
+              <div className="h-[1px] w-4 bg-[#6366f1]"></div>
+            </div>
           </div>
 
           <form onSubmit={handleSignup} className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-white/70 text-xs font-['Space_Mono'] mb-2 uppercase">First Name</label>
-                <input
-                  type="text"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  required
-                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#6366f1] transition-all"
-                />
-              </div>
-              <div>
-                <label className="block text-white/70 text-xs font-['Space_Mono'] mb-2 uppercase">Last Name</label>
-                <input
-                  type="text"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  required
-                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#6366f1] transition-all"
-                />
-              </div>
+            <div>
+              <label className="block text-white/70 text-xs font-['Space_Mono'] mb-2 uppercase">First Name</label>
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#6366f1] transition-all"
+              />
             </div>
+            <div>
+              <label className="block text-white/70 text-xs font-['Space_Mono'] mb-2 uppercase">Last Name</label>
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                required
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#6366f1] transition-all"
+              />
+            </div>
+
 
             <div>
               <label className="block text-white/70 text-xs font-['Space_Mono'] mb-2 uppercase">Email Address</label>
@@ -104,14 +113,15 @@ export default function SignupPage() {
             </button>
           </form>
 
-          <div className="mt-8 text-center border-t border-white/5 pt-6">
-            <p className="text-white/40 text-sm">
+          <div className="mt-6 text-center border-t border-white/5 pt-4">
+            <p className="text-white/40 text-xs">
               Already have an account?{" "}
               <Link href="/login" className="text-[#6366f1] hover:underline">
                 Login here
               </Link>
             </p>
           </div>
+
         </div>
       </div>
       <Footer />

@@ -118,11 +118,13 @@ export default function ProfilePage() {
   return (
     <div className="home-wrapper min-h-screen flex flex-col bg-[#0b0b0f]">
       <Navbar />
-      <div className="flex-grow flex flex-col items-center pt-40 pb-20 px-6">
-        <div className="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="flex-grow flex flex-col items-center pt-32 md:pt-40 pb-20 px-4 md:px-6">
+        <div className="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+
           
           {/* Sidebar / Profile Summary */}
-          <div className="lg:col-span-1 bg-gray-900/50 backdrop-blur-xl p-8 rounded-3xl border border-white/10 shadow-2xl h-fit">
+          <div className="lg:col-span-1 bg-gray-900/50 backdrop-blur-xl p-6 md:p-8 rounded-3xl border border-white/10 shadow-2xl h-fit">
+
             <div className="flex flex-col items-center text-center">
               <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#6366f1] to-[#22d3ee] flex items-center justify-center text-black font-bold text-4xl shadow-[0_0_20px_rgba(99,102,241,0.4)] mb-6">
                 {firstName?.charAt(0)}
@@ -134,16 +136,7 @@ export default function ProfilePage() {
               
               <div className="w-full h-[1px] bg-white/10 my-8"></div>
               
-              <div className="w-full space-y-4">
-                <button className="w-full py-3 px-4 bg-white/5 rounded-xl text-white font-['Space_Mono'] text-xs text-left hover:bg-white/10 transition-all flex items-center justify-between group">
-                  <span>ORDERS</span>
-                  <i className="fa-solid fa-chevron-right text-[10px] opacity-30 group-hover:opacity-100 transition-all"></i>
-                </button>
-                <button className="w-full py-3 px-4 bg-[#6366f1]/20 border border-[#6366f1]/50 rounded-xl text-white font-['Space_Mono'] text-xs text-left flex items-center justify-between">
-                  <span>SETTINGS</span>
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#6366f1]"></div>
-                </button>
-              </div>
+
             </div>
           </div>
 
@@ -151,12 +144,14 @@ export default function ProfilePage() {
           <div className="lg:col-span-2 space-y-8">
             
             {/* Personal Details Form */}
-            <div className="bg-gray-900/50 backdrop-blur-xl p-8 rounded-3xl border border-white/10 shadow-2xl">
+            <div className="bg-gray-900/50 backdrop-blur-xl p-6 md:p-8 rounded-3xl border border-white/10 shadow-2xl">
+
               <h2 className="font-['Bebas_Neue'] text-2xl text-white tracking-widest mb-6 flex items-center gap-3">
                 <i className="fa-solid fa-user-pen text-[#6366f1] text-lg"></i>
                 PERSONAL DETAILS
               </h2>
-              <form onSubmit={handleUpdate} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <form onSubmit={handleUpdate} className="flex flex-col gap-5 md:gap-6">
+
                 <div className="col-span-1">
                   <label className="block text-white/50 text-[10px] font-['Space_Mono'] mb-2 uppercase tracking-widest">First Name</label>
                   <input
@@ -192,7 +187,8 @@ export default function ProfilePage() {
             </div>
 
             {/* Address Management */}
-            <div className="bg-gray-900/50 backdrop-blur-xl p-8 rounded-3xl border border-white/10 shadow-2xl">
+            <div className="bg-gray-900/50 backdrop-blur-xl p-6 md:p-8 rounded-3xl border border-white/10 shadow-2xl">
+
               <div className="flex justify-between items-center mb-6">
                 <h2 className="font-['Bebas_Neue'] text-2xl text-white tracking-widest flex items-center gap-3">
                   <i className="fa-solid fa-location-dot text-[#22d3ee] text-lg"></i>
@@ -371,8 +367,9 @@ export default function ProfilePage() {
               <div className="space-y-4">
                 {userData?.addresses?.length > 0 ? (
                   userData.addresses.map((addr) => (
-                    <div key={addr.id} className="flex items-center justify-between p-5 bg-white/5 rounded-2xl border border-white/5 hover:border-[#22d3ee]/30 transition-all group">
+                    <div key={addr.id} className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-5 bg-white/5 rounded-2xl border border-white/5 hover:border-[#22d3ee]/30 transition-all group gap-4">
                       <div className="flex items-start gap-4">
+
                         <div className="w-10 h-10 rounded-lg bg-black/30 flex items-center justify-center text-[#22d3ee] border border-white/5 shadow-inner">
                           <i className="fa-solid fa-house-medical text-sm"></i>
                         </div>
@@ -387,11 +384,12 @@ export default function ProfilePage() {
                           </p>
                         </div>
                       </div>
-                      <button className="opacity-0 group-hover:opacity-100 text-white/20 hover:text-red-400 transition-all p-2">
+                      <button className="sm:opacity-0 group-hover:opacity-100 text-white/20 hover:text-red-400 transition-all p-2 self-end sm:self-auto">
                         <i className="fa-solid fa-trash-can text-sm"></i>
                       </button>
                     </div>
                   ))
+
                 ) : (
                   <div className="text-center py-10 border-2 border-dashed border-white/5 rounded-3xl">
                     <p className="text-white/20 font-['Space_Mono'] text-xs uppercase tracking-widest">No research addresses saved</p>

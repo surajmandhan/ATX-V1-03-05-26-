@@ -49,9 +49,9 @@ const AddressModal = ({ isOpen, onClose, onSave, currentAddress = null }) => {
       ></div>
 
       {/* MODAL CONTENT */}
-      <div className="relative bg-[#16161a] border border-white/10 w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-300">
-        <div className="p-8 border-b border-white/5 flex justify-between items-center">
-          <h2 className="font-['Bebas_Neue'] text-3xl tracking-widest text-[#e6e6eb]">
+      <div className="relative bg-[#16161a] border border-white/10 w-full max-w-2xl rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-300">
+        <div className="p-5 md:p-8 border-b border-white/5 flex justify-between items-center">
+          <h2 className="font-['Bebas_Neue'] text-2xl md:text-3xl tracking-widest text-[#e6e6eb]">
             {currentAddress?.id ? 'UPDATE ADDRESS' : 'ADD NEW ADDRESS'}
           </h2>
           <button onClick={onClose} className="text-white/40 hover:text-white transition-colors">
@@ -61,7 +61,8 @@ const AddressModal = ({ isOpen, onClose, onSave, currentAddress = null }) => {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-8 max-h-[70vh] overflow-y-auto custom-scrollbar">
+        <form onSubmit={handleSubmit} className="p-5 md:p-8 max-h-[80vh] md:max-h-[70vh] overflow-y-auto custom-scrollbar">
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-bold">First Name</label>

@@ -1079,48 +1079,34 @@ body {
 
 /* END OF HOME STYLES */
 
-@media (max-width: 800px) {
-  .home-nav {
-    padding: 14px 20px;
-  }
+/* ==================================================
+   MOBILE RESPONSIVENESS OVERHAUL
+   ================================================== */
 
-  .nav-links {
-    gap: 18px;
-  }
-
-  .nav-links li:not(:last-child) {
-    display: none;
-  }
-
+@media (max-width: 1024px) {
   .home-hero {
     grid-template-columns: 1fr;
-    min-height: auto;
-    padding: 20px 20px 40px;
     text-align: center;
+    padding-top: 120px;
+    gap: 40px;
   }
 
-  .home-hero-img-wrap {
-    order: -1;
-    margin-bottom: 10px;
+  .home-hero-text {
+    order: 2;
   }
 
-  .home-hero-img-ring {
-    width: 260px;
-    height: 260px;
+  .hidden.lg\:flex {
+    display: none !important;
   }
 
-  .home-hero-badge {
-    right: calc(50% - 160px);
-    top: 10px;
-  }
-
-  .home-hero-eyebrow {
-    margin: 0 auto 16px;
+  .home-hero-h2 {
+    font-size: clamp(3.5rem, 12vw, 5.5rem);
   }
 
   .home-hero-sub {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto;
+    font-size: 0.9rem;
+    max-width: 90%;
   }
 
   .home-hero-pills {
@@ -1128,192 +1114,191 @@ body {
   }
 
   .home-hero-btns {
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
 
-  .home-hero-mini-stats {
-    justify-content: center;
+  .btn-home-hero-primary, .btn-home-hero-secondary {
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
   }
 
   .stats-strip {
-    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0;
   }
 
-  .stat-num {
-    font-size: 2rem;
+  .stat {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  .lifestyle {
-    padding: 60px 20px 80px;
+  .stat:nth-child(even) {
+    border-right: none;
   }
 
   .lifestyle-inner {
     grid-template-columns: 1fr;
+    text-align: center;
     gap: 40px;
   }
 
-  .slider-section {
-    padding: 60px 0 40px;
+  .ls-warning-box {
+    justify-content: center;
   }
 
-  .section-header {
-    padding: 0 20px;
+  .ls-features {
+    align-items: center;
   }
 
-  .slider-track {
-    padding: 0 20px;
-  }
-
-  .slider-controls {
-    padding: 0 20px;
-  }
-
-  .shipping-section {
-    padding: 60px 20px;
-  }
-
-  .shipping-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .ingredients-section {
-    padding: 70px 20px 60px;
-  }
-
-  .ingredients-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .newsletter {
-    padding: 20px;
+  .ls-btns {
+    justify-content: center;
   }
 
   .newsletter-inner {
     grid-template-columns: 1fr;
-    padding: 40px 28px;
-    gap: 30px;
-  }
-
-  .home-footer {
-    padding: 28px 20px;
-  }
-
-  .footer-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .footer-links {
-    gap: 16px;
-  }
-
-  .footer-contact {
-    flex-direction: row;
-  }
-}
-
-@media (max-width: 480px) {
-  .ticker-word {
-    font-size: 1.1rem;
-  }
-
-  .home-nav {
-    padding: 12px 16px;
-  }
-
-  .nav-logo {
-    font-size: 1.2rem;
-  }
-
-  .hero {
-    padding: 16px 16px 36px;
-  }
-
-  .hero-h2 {
-    font-size: clamp(3.5rem, 14vw, 5rem);
-  }
-
-  .hero-img-ring {
-    width: 220px;
-    height: 220px;
-  }
-
-  .hero-badge {
-    display: none;
-  }
-
-  .hero-sub {
-    font-size: 0.78rem;
-  }
-
-  .stats-strip {
-    overflow-x: auto;
-  }
-
-  .stat {
-    min-width: 80px;
-  }
-
-  .stat-num {
-    font-size: 1.8rem;
-  }
-
-  .stat-label {
-    font-size: 0.55rem;
-  }
-
-  .atx-products-card {
-    width: 240px;
-    min-width: 240px;
-    max-width: 240px;
-    height: 380px;
-  }
-
-  .shipping-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .ingredients-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .newsletter-inner {
-    padding: 32px 20px;
-  }
-
-  .nl-left h3 {
-    font-size: 2.2rem;
+    text-align: center;
+    padding: 40px 20px;
   }
 
   .nl-form {
     flex-direction: column;
   }
 
+  .nl-input {
+    width: 100%;
+  }
+
   .nl-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-hero-h2 {
+    font-size: 3.2rem;
+  }
+
+  .section-header h3 {
+    font-size: 2.8rem;
+  }
+
+  .atx-products-card {
+    width: 180px;
+    min-width: 180px;
+    height: auto;
+    min-height: 310px;
+    padding: 12px;
+    border-radius: 20px;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+
+  .atx-products-card .card-img-placeholder {
+    position: relative !important;
+    height: 160px !important;
+    width: calc(100% + 24px) !important;
+    margin: -12px -12px 10px -12px !important;
+    border-radius: 0 !important;
+  }
+
+  .atx-products-card.plp-card {
+    width: 100%;
+    min-width: unset;
+    max-width: none;
+    height: auto;
+    min-height: 280px;
+    padding: 10px;
+    border-radius: 16px;
+  }
+
+
+  .atx-products-card.plp-card .card-img-placeholder {
+    height: 140px !important;
+    width: calc(100% + 24px) !important;
+    margin: -12px -12px 12px -12px !important;
+  }
+
+  .atx-products-card .card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .atx-products-card .card-price {
+    font-size: 1.2rem;
+    width: 100%;
+  }
+
+  .atx-products-card .card-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9rem;
     text-align: center;
   }
 
-  .home-footer {
-    padding: 24px 16px;
+  .atx-products-card .card-chip {
+    display: none;
   }
 
-  .footer-links {
+  .atx-products-card .card-name {
+
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+  }
+
+  .atx-products-card .card-desc {
+    display: none;
+  }
+
+
+
+  .slider-controls {
+    padding: 0 20px;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .ctrl-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
+
+  .slider-dots {
+    gap: 6px;
+  }
+
+  .slider-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .slider-dot.active {
+    width: 20px;
+  }
+
+  .shipping-grid, .ingredients-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
     flex-direction: column;
-    gap: 10px;
+    text-align: center;
+    align-items: center;
   }
 
-  .footer-contact {
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-  }
-
-  .footer-contact-btn {
-    width: 100%;
+  .footer-links, .footer-contact {
     justify-content: center;
   }
 }
+
+
+
 
 /* ==================================================
    CLERK MODAL & UI OVERRIDES (DARK THEME)

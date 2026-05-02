@@ -29,8 +29,9 @@ const ProductCard = ({ product }) => {
   return (
     <a
       onClick={() => router.push("/product/" + product.handle)}
-      className={`atx-products-card ${cardClass} cursor-pointer group`}
+      className={`atx-products-card plp-card ${cardClass} cursor-pointer group`}
     >
+
       <span className="card-chip" style={{ color: '#000' }}>{product.category || 'Compound'}</span>
       
       <button 

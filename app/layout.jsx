@@ -2,7 +2,10 @@ import { Outfit } from "next/font/google";
 import { AppContextProvider } from "@/context/AppContext";
 import CustomCursor from "@/components/CustomCursor";
 import CustomToaster from "@/components/CustomToaster";
+import MobileBottomNav from "@/components/MobileBottomNav";
+import AgeVerification from "@/components/AgeVerification";
 import "./globals.css";
+
 import faviconImg from "../assets/logos/fav-logo-new.png";
 
 const outfit = Outfit({ subsets: ["latin"], weight: ["300", "400", "500"] });
@@ -24,11 +27,14 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${outfit.className} antialiased text-white bg-[#0b0b0f]`}>
         <CustomCursor />
+        <AgeVerification />
         <AppContextProvider>
           <CustomToaster />
           {children}
+          <MobileBottomNav />
         </AppContextProvider>
       </body>
+
     </html>
   );
 }

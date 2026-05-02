@@ -415,12 +415,14 @@ body {
   position: relative;
 }
 .ls-kicker {
-  font-size: 0.68rem;
-  letter-spacing: 0.25em;
+  font-size: 1.1rem;
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--hot-pink);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
+
 .ls-title {
   font-family: "Bebas Neue", sans-serif;
   font-size: clamp(2.5rem, 4.5vw, 4rem);

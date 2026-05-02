@@ -20,10 +20,9 @@ const Footer = () => {
         <div className="footer-links">
           <Link href="/all-products">Products</Link>
           <Link href="/about">About</Link>
-          <Link href="/faq">FAQ</Link>
           <Link href="/contact">Contact</Link>
-          <Link href="#">Privacy Policy</Link>
           <Link href="#">© {new Date().getFullYear()}</Link>
+
         </div>
 
         <div className="footer-contact">

@@ -27,7 +27,7 @@ const MiniCart = ({ isOpen, onClose }) => {
 
             {/* Sliding Cart Panel */}
             <div
-                className={`absolute right-0 top-0 h-full w-full max-w-md bg-[#0b0b0f] border-l border-white/10 shadow-2xl flex flex-col transform transition-transform duration-500 ease-in-out ${
+                className={`absolute right-0 top-0 h-full w-full sm:max-w-md bg-[#0b0b0f] border-l border-white/10 shadow-2xl flex flex-col transform transition-transform duration-500 ease-in-out ${
                     isOpen ? 'translate-x-0' : 'translate-x-full'
                 }`}
                 onClick={(e) => e.stopPropagation()}

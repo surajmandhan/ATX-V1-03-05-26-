@@ -6,9 +6,26 @@
 @tailwind utilities;
 
 /* GLOBAL CUSTOM CURSOR */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   cursor: none !important;
 }
+
+@media (max-width: 1024px) {
+  body {
+    cursor: auto !important;
+  }
+  .cursor {
+    display: none !important;
+  }
+}
+
 .cursor {
   position: fixed;
   top: 0;
@@ -399,3 +416,230 @@ html body button.cl-formButtonPrimary:hover,
   .footer-links { justify-content: center; }
   .footer-contact { justify-content: center; }
 }
+/* --- MOBILE BOTTOM NAVIGATION --- */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(11, 11, 15, 0.8);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+}
+
+.mobile-bottom-nav-inner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: rgba(230, 230, 235, 0.5);
+  text-decoration: none;
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  flex: 1;
+}
+
+.mobile-nav-item i {
+  font-size: 18px;
+}
+
+.mobile-nav-item.active {
+  color: #6366f1;
+}
+
+.mobile-nav-item:hover {
+  color: #22d3ee;
+}
+
+.cart-badge {
+  position: absolute;
+  top: 0;
+  right: 25%;
+  background: #eab308;
+  color: #0b0b0f;
+  font-size: 10px;
+  font-weight: bold;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 1025px) {
+  .mobile-bottom-nav {
+    display: none;
+  }
+}
+
+/* Add padding to body to prevent content from being hidden behind the bottom nav on mobile */
+@media (max-width: 1024px) {
+  body {
+    padding-bottom: 80px;
+  }
+}
+@media (max-width: 640px) {
+  .custom-toast {
+    padding: 0.75rem 2rem 0.75rem 2.5rem;
+    max-width: 16rem;
+    min-width: 12rem;
+    border-radius: 0.75rem;
+  }
+
+  .custom-toast h3 {
+    font-size: 1rem;
+    line-height: 1.2rem;
+  }
+
+  .custom-toast p {
+    font-size: 0.8rem;
+    line-height: 1.1rem;
+  }
+
+  .custom-toast:before {
+    width: 0.35rem;
+    left: 0.4rem;
+  }
+}
+
+/* AGE VERIFICATION POPUP */
+.age-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 11, 15, 0.95);
+  backdrop-filter: blur(20px);
+  z-index: 1000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.age-modal {
+  background: #13131a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  padding: 40px;
+  width: 100%;
+  max-width: 450px;
+  max-height: calc(100vh - 40px); /* Fill screen but leave gap */
+  overflow-y: auto;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: modal-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+
+
+@keyframes modal-pop {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.age-icon {
+  font-size: 3rem;
+  color: #6366f1;
+  margin-bottom: 20px;
+}
+
+.age-icon.error {
+  color: #ff0060;
+}
+
+.age-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 15px;
+  color: #e6e6eb;
+}
+
+.age-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.age-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.age-btn {
+  width: 100%;
+  padding: 15px;
+  border-radius: 100px;
+  border: none;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.age-btn.yes {
+  background: #6366f1;
+  color: white;
+}
+
+.age-btn.yes:hover {
+  background: #22d3ee;
+  color: black;
+  transform: translateY(-2px);
+}
+
+.age-btn.no {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.age-btn.no:hover {
+  background: #ff0060;
+  color: white;
+}
+
+.age-btn.retry {
+  background: #6366f1;
+  color: white;
+}
+
+.age-disclaimer {
+  margin-top: 25px;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.3);
+  line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .age-modal {
+    padding: 30px 20px;
+  }
+  .age-title {
+    font-size: 2rem;
+  }
+}
+

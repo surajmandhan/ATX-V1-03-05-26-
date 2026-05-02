@@ -25,48 +25,62 @@ const Navbar = () => {
         {/* TICKER */}
         <div className={`ticker transition-all duration-300 ${isNavSticky ? "h-0 opacity-0 overflow-hidden py-0 border-none" : "h-auto opacity-100"}`}>
           <div className="ticker-inner">
-            <span className="ticker-word pink">U.S.</span>
-            <span className="ticker-word yellow">SOURCED</span>
-            <span className="ticker-word cream">RESEARCH</span>
-            <span className="ticker-word pink">PEPTIDES</span>
-            <span className="ticker-word yellow">99%+</span>
-            <span className="ticker-word cream">PURITY</span>
+            <span className="ticker-word pink">FAST</span>
+            <span className="ticker-word yellow">SHIPPING</span>
             <span className="ticker-sep">✦</span>
 
-            <span className="ticker-word pink">THIRD PARTY</span>
-            <span className="ticker-word yellow">LAB TESTED</span>
-            <span className="ticker-word cream">PREMIUM</span>
-            <span className="ticker-word pink">QUALITY</span>
-            <span className="ticker-word yellow">FAST</span>
-            <span className="ticker-word cream">SHIPPING</span>
+            <span className="ticker-word cream">SECURE</span>
+            <span className="ticker-word pink">CHECKOUT</span>
             <span className="ticker-sep">✦</span>
 
-            <span className="ticker-word pink">SECURE</span>
-            <span className="ticker-word yellow">CHECKOUT</span>
-            <span className="ticker-word cream">TRUSTED</span>
-            <span className="ticker-word pink">SUPPLIERS</span>
-            <span className="ticker-word yellow">USA</span>
-            <span className="ticker-word cream">ONLY</span>
+            <span className="ticker-word yellow">TRUSTED</span>
+            <span className="ticker-word cream">SUPPLIERS</span>
+            <span className="ticker-sep">✦</span>
+
+            <span className="ticker-word pink">LAB</span>
+            <span className="ticker-word yellow">TESTED</span>
+            <span className="ticker-sep">✦</span>
+
+            {/* Repeat for continuous loop effect if necessary, but the CSS usually handles it */}
+            <span className="ticker-word pink">FAST</span>
+            <span className="ticker-word yellow">SHIPPING</span>
+            <span className="ticker-sep">✦</span>
+
+            <span className="ticker-word cream">SECURE</span>
+            <span className="ticker-word pink">CHECKOUT</span>
+            <span className="ticker-sep">✦</span>
+
+            <span className="ticker-word yellow">TRUSTED</span>
+            <span className="ticker-word cream">SUPPLIERS</span>
+            <span className="ticker-sep">✦</span>
+
+            <span className="ticker-word pink">LAB</span>
+            <span className="ticker-word yellow">TESTED</span>
             <span className="ticker-sep">✦</span>
           </div>
         </div>
 
+
         {/* NAV */}
-        <nav className={`home-nav w-full transition-all duration-300 ${isNavSticky ? "bg-gray-900 shadow-lg" : "bg-[#0b0b0f] lg:bg-transparent"}`}>
+        <nav className={`home-nav w-full transition-all duration-300 ${isNavSticky ? "bg-gray-900 shadow-lg" : "bg-[#0b0b0f] lg:bg-transparent"} px-4 md:px-10 py-3 md:py-4`}>
           <Link href="/" className="nav-logo">
-            <img src={logoImg?.src || logoImg} alt="ATX Peptides Logo" style={{ maxHeight: "50px", width: "auto", objectFit: "contain" }} />
+            <img src={logoImg?.src || logoImg} alt="ATX Peptides Logo" className="h-14 md:h-16 w-auto object-contain" />
           </Link>
+
           <ul className="nav-links">
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/all-products">Products</Link></li>
-            <li><Link href="/about">About</Link></li>
-            <li><Link href="/contact">Contact</Link></li>
-            <li>
+            <li className="hidden lg:block"><Link href="/all-products">Products</Link></li>
+
+
+            <li className="hidden lg:block"><Link href="/about">About</Link></li>
+            <li className="hidden lg:block"><Link href="/contact">Contact</Link></li>
+
+            <li className="hidden lg:block">
               <a onClick={() => setIsMiniCartOpen(true)} className="cart-link" style={{cursor: "pointer", background: "var(--electric-yellow, #eab308)", color: "var(--dark, #0b0b0f)"}}>
                 Cart <i className="fa-solid fa-bag-shopping"></i>
                 {getCartCount() > 0 && <span style={{fontSize:'0.8rem', marginLeft:'4px'}}>({getCartCount()})</span>}
               </a>
             </li>
+
             <li>
               {customerToken ? (
                 <div className="relative group">
