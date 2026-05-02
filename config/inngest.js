@@ -8,8 +8,8 @@ export const inngest = new Inngest({ id: "quickcart-next" });
 export const syncUserCreation = inngest.createFunction(
   {
     id: "sync-user-from-clerk",
+    triggers: [{ event: "clerk/user.created" }],
   },
-  { event: "clerk/user.created" },
   async ({ event }) => {
     const { id, first_name, last_name, email_addresses, image_url } =
       event.data;
@@ -29,8 +29,8 @@ export const syncUserCreation = inngest.createFunction(
 export const syncUserUpdation = inngest.createFunction(
   {
     id: "update-user-from-clerk",
+    triggers: [{ event: "clerk/user.updated" }],
   },
-  { event: "clerk/user.updated" },
   async ({ event }) => {
     const { id, first_name, last_name, email_addresses, image_url } =
       event.data;
@@ -50,8 +50,8 @@ export const syncUserUpdation = inngest.createFunction(
 export const syncUserDeletion = inngest.createFunction(
   {
     id: "delete-user-from-clerk",
+    triggers: [{ event: "clerk/user.deleted" }],
   },
-  { event: "clerk/user.deleted" },
   async ({ event }) => {
     const { id } = event.data;
 
@@ -68,8 +68,8 @@ export const createUserOrder = inngest.createFunction(
       maxSize: 5,
       timeout: "5s",
     },
+    triggers: [{ event: "order/created" }],
   },
-  { event: "order/created" },
   async ({ events }) => {
     const orders = events.map((event) => {
       return {
