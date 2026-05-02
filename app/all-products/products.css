@@ -1,0 +1,321 @@
+:root {
+  --hot-pink: #6366f1;
+  --electric-yellow: #22d3ee;
+  --lime: #67e8f9;
+  --sky: #38bdf8;
+  --dark: #0b0b0f;
+  --cream: #e6e6eb;
+  --purple: #8b5cf6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--dark);
+  font-family: "Space Mono", monospace;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+.cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: var(--electric-yellow);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease, width 0.2s, height 0.2s;
+  mix-blend-mode: difference;
+  display: none;
+}
+.cursor.visible {
+  display: block;
+}
+.cursor.big {
+  width: 60px;
+  height: 60px;
+}
+
+nav {
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10;
+}
+.nav-logo {
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.5rem;
+  color: var(--electric-yellow);
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  align-items: center;
+}
+.nav-links a {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.15em;
+  color: var(--cream);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover {
+  color: var(--hot-pink);
+}
+.nav-links .cart-link {
+  background: var(--hot-pink);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 100px;
+  font-size: 1.1rem;
+}
+.nav-links .cart-link:hover {
+  background: var(--electric-yellow);
+  color: var(--dark);
+}
+
+/* ==================================================
+   PLP HEADER & FILTERS
+   ================================================== */
+.plp-header {
+  max-width: 1100px;
+  margin: 60px auto 30px;
+  padding: 0 20px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.plp-header h1 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(3rem, 8vw, 5rem);
+  color: var(--cream);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.plp-header p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.plp-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.filter-btn {
+  padding: 8px 18px;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: none;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: transparent;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: var(--hot-pink);
+  border-color: var(--hot-pink);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ==================================================
+   PRODUCT GRID & CARDS
+   ================================================== */
+.products {
+  max-width: 1200px;
+  margin: 20px auto 80px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.product-count {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* SHAKE CARD (Same as Home) */
+.shake-card {
+  width: 100%;
+  height: 420px;
+  border-radius: 28px;
+  position: relative;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 28px;
+  cursor: none;
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+}
+
+.shake-card:hover {
+  transform: translateY(-12px) rotate(-1deg);
+  z-index: 10;
+}
+
+.shake-card:nth-child(even):hover {
+  transform: translateY(-12px) rotate(1deg);
+}
+
+.card-metabolic { background: linear-gradient(160deg, #323230, #252523); }
+.card-longevity { background: linear-gradient(160deg, #251f48, #1a1535); }
+.card-weight { background: linear-gradient(160deg, #352b00, #271f00); }
+.card-growth { background: linear-gradient(160deg, #38001e, #280015); }
+
+.card-img-placeholder {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  color: rgba(255, 255, 255, 0.15);
+  transition: transform 0.4s ease, color 0.3s;
+  pointer-events: auto;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  overflow: hidden;
+}
+
+.shake-card:hover .card-img-placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* Sirf andar ki image ko zoom karega */
+.card-img-placeholder img {
+  transition: transform 0.5s ease;
+}
+
+.shake-card:hover .card-img-placeholder img {
+  transform: scale(1.1);
+}
+
+/* Agar image na ho aur sirf icon ho to uspe purana effect kaam karega */
+.card-img-placeholder i {
+  transition: transform 0.4s ease;
+}
+
+.shake-card:hover .card-img-placeholder i {
+  transform: scale(1.15) translateY(-10px);
+}
+
+.card-chip {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  border: 1px solid currentColor;
+  z-index: 3;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.card-bottom {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.card-name {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 2.2rem;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: var(--cream);
+  margin-bottom: 6px;
+}
+
+.card-desc {
+  font-size: 0.67rem;
+  color: rgba(255, 248, 240, 0.45);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-price {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.6rem;
+  color: var(--electric-yellow);
+}
+
+.card-btn {
+  background: var(--hot-pink);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  cursor: none;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.card-btn:hover {
+  transform: scale(1.08);
+  background: #ff0060;
+}
+
+@media (max-width: 800px) {
+  nav { padding: 14px 20px; }
+  .nav-links { gap: 18px; }
+  .nav-links li:not(:last-child) { display: none; }
+  .product-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+}

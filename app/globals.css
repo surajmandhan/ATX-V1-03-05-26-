@@ -1,0 +1,401 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Permanent+Marker&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* GLOBAL CUSTOM CURSOR */
+body {
+  cursor: none !important;
+}
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--electric-yellow, #eab308);
+  border-radius: 50%;
+  pointer-events: none; /* IMPORTANT: Allows clicks to pass through */
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+  z-index: 9999999 !important; /* Shows above all popups and Clerk Modals */
+  opacity: 0;
+}
+.cursor.visible {
+  opacity: 1;
+}
+.cursor.big {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(234, 179, 8, 0.2);
+}
+
+/* --- CLERK MODAL DARK THEME & SIZE FIXES --- */
+
+/* 1. Modals ko CSS se force bada karne ke liye */
+.cl-modalContent .cl-card {
+  width: 544px !important;
+  max-width: 101vw !important;
+}
+
+/* 2. Alternative options button ka background */
+.cl-alternativeMethodsBlockButton {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+.cl-alternativeMethodsBlockButton:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 3. Black text aur dark SVG icons ko white karne ke liye */
+.cl-alternativeMethodsBlockButtonText,
+.cl-internal-kd81fb,
+.cl-alternativeMethodsBlockButton svg path {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+/* --- CUSTOM TOAST NOTIFICATIONS --- */
+
+:root {
+  --tr: all 0.5s ease 0s;
+  --ch1: #05478a;
+  --ch2: #0070e0;
+  --ch3: #0070e040;
+  --cs1: #005e38;
+  --cs2: #03a65a;
+  --cs3: #03a65a40;
+  --cw1: #c24914;
+  --cw2: #fc8621;
+  --cw3: #fc862140;
+  --ce1: #851d41;
+  --ce2: #db3056;
+  --ce3: #db305640;
+}
+
+.custom-toast {
+  background: #fff;
+  color: #f5f5f5;
+  padding: 1rem 2.5rem 1rem 3rem;
+  border-radius: 1rem;
+  position: relative;
+  font-weight: 300;
+  margin: 0.5rem 0;
+  text-align: left;
+  max-width: 20rem;
+  min-width: 16rem;
+  transition: var(--tr);
+  border: 0.15rem solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 1.5rem 0 rgba(26, 31, 67, 0.37);
+  pointer-events: auto;
+  font-family: inherit;
+}
+
+.custom-toast:before {
+  content: "";
+  position: absolute;
+  width: 0.5rem;
+  height: calc(100% - 1.5rem);
+  top: 0.75rem;
+  left: 0.5rem;
+  z-index: 0;
+  border-radius: 1rem;
+  background: var(--clr);
+}
+
+.custom-toast h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  line-height: 1.35rem;
+  font-weight: 600;
+  position: relative;
+  color: var(--clr);
+}
+
+.custom-toast p {
+  position: relative;
+  font-size: 0.95rem;
+  z-index: 1;
+  margin: 0.25rem 0 0;
+  color: #595959;
+  line-height: 1.3rem;
+}
+
+.custom-toast-close {
+  position: absolute;
+  width: 1.35rem;
+  height: 1.35rem;
+  text-align: center;
+  right: 1rem;
+  top: 1rem;
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+.custom-toast-close:after {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  font-size: 1.8rem;
+  content: "+";
+  transform: rotate(-45deg);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #595959;
+  text-indent: 1px;
+}
+
+.custom-toast-close:hover:after {
+  background: var(--clr);
+  color: #fff;
+}
+
+/* Animations for React Hot Toast */
+.custom-animate-enter {
+  animation: custom-enter 0.3s cubic-bezier(0.21, 1.02, 0.73, 1) forwards;
+}
+.custom-animate-leave {
+  animation: custom-leave 0.4s forwards cubic-bezier(0.06, 0.71, 0.55, 1);
+}
+
+@keyframes custom-enter {
+  0% { transform: translateX(100%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+@keyframes custom-leave {
+  0% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+.custom-toast.help {
+  --bg: var(--ch1);
+  --clr: var(--ch2);
+  --brd: var(--ch3);
+}
+
+.custom-toast.success {
+  --bg: var(--cs1);
+  --clr: var(--cs2);
+  --brd: var(--cs3);
+}
+
+.custom-toast.warning {
+  --bg: var(--cw1);
+  --clr: var(--cw2);
+  --brd: var(--cw3);
+}
+
+.custom-toast.error {
+  --bg: var(--ce1);
+  --clr: var(--ce2);
+  --brd: var(--ce3);
+}
+
+/* Fix for Clerk Buttons where text color becomes invisible on hover */
+html body a.cl-footerActionLink:hover,
+html body button.cl-formButtonPrimary:hover,
+.cl-footerActionLink:hover,
+.cl-formButtonPrimary:hover {
+  color: #000000 !important;
+}
+
+.cl-socialButtonsBlockButton:hover,
+.cl-button:hover,
+.cl-userButtonPopoverCustomItemButton:hover {
+  color: #ffffff !important;
+}
+
+/* Force User Button Popover custom item text and icons to be white */
+.cl-userButtonPopoverCustomItemButton,
+.cl-userButtonPopoverCustomItemButtonIconBox,
+.cl-userButtonPopoverCustomItemButtonIconBox i {
+  color: #ffffff !important;
+}
+
+
+/* --- SHARED HEADER & TICKER --- */
+.ticker {
+  background: #0b0b0f;
+  overflow: hidden;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  width: 100%;
+}
+.ticker-inner {
+  display: inline-flex;
+  align-items: center;
+  animation: ticker-scroll 30s linear infinite;
+}
+.ticker-word {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.18em;
+  padding: 10px 0;
+  white-space: nowrap;
+}
+.ticker-word.pink { color: #6366f1; padding-right: 28px; }
+.ticker-word.yellow { color: #22d3ee; padding-right: 28px; }
+.ticker-word.cream { color: rgba(230, 230, 235, 0.3); padding-right: 28px; }
+.ticker-sep { color: #6366f1; font-size: 1rem; padding: 0 20px 0 0; opacity: 0.5; }
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.home-nav {
+  padding: 15px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 100;
+  background: #0b0b0f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  color: #e6e6eb;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #6366f1;
+}
+
+.nav-links .cart-link {
+  background: #eab308;
+  color: #0b0b0f;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 1024px) {
+  .home-nav { padding: 15px 20px; }
+  .nav-links { gap: 15px; }
+}
+
+/* --- SHARED FOOTER --- */
+.home-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 60px 40px 40px;
+  background: #0b0b0f;
+  margin-top: auto;
+  width: 100%;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.footer-logo-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.footer-logo-text {
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.5rem;
+  color: #22d3ee;
+  text-decoration: none;
+}
+.footer-dev-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(230, 230, 235, 0.3);
+}
+.footer-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  font-size: 0.7rem;
+  color: rgba(230, 230, 235, 0.4);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+.footer-links a:hover {
+  color: #6366f1;
+}
+.footer-contact {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.footer-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.btn-email {
+  background: #6366f1;
+  color: white;
+}
+.btn-phone {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e6e6eb;
+}
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-bottom p {
+  font-size: 0.7rem;
+  color: rgba(230, 230, 235, 0.3);
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .footer-inner { flex-direction: column; text-align: center; }
+  .footer-links { justify-content: center; }
+  .footer-contact { justify-content: center; }
+}

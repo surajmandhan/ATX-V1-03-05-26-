@@ -1,0 +1,24 @@
+{
+  "app/cart/page.jsx -> @/lib/shopify": {
+    "id": "app/cart/page.jsx -> @/lib/shopify",
+    "files": []
+  },
+  "app/my-orders/page.jsx -> @/lib/shopify": {
+    "id": "app/my-orders/page.jsx -> @/lib/shopify",
+    "files": []
+  },
+  "app/page.jsx -> lottie-react": {
+    "id": "app/page.jsx -> lottie-react",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_lottie-react_build_index_umd_js.js"
+    ]
+  },
+  "app/profile/page.jsx -> @/lib/shopify": {
+    "id": "app/profile/page.jsx -> @/lib/shopify",
+    "files": []
+  },
+  "context/AppContext.jsx -> @/lib/shopify": {
+    "id": "context/AppContext.jsx -> @/lib/shopify",
+    "files": []
+  }
+}
