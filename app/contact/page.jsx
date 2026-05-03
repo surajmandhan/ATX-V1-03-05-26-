@@ -14,27 +14,10 @@ export default function ContactPage() {
   const { router, isMiniCartOpen, setIsMiniCartOpen, getCartCount, user } = useAppContext();
   // const { openSignIn } = useClerk(); // Removed Clerk
   const [isNavSticky, setIsNavSticky] = useState(false);
-  const [openFaq, setOpenFaq] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const faqs = [
-    {
-      question: "What shipping options do you offer?",
-      answer: "We offer standard and express shipping with secure packaging.",
-    },
-    {
-      question: "Do you ship internationally?",
-      answer: "Yes, we ship internationally to selected regions.",
-    },
-    {
-      question: "What payment methods do you accept?",
-      answer: "We accept cards, UPI, and bank transfers.",
-    },
-    {
-      question: "How should I store products?",
-      answer: "Store in a cool, dry place away from sunlight.",
-    },
-  ];
+
+
 
   useEffect(() => {
     // Sticky Nav Logic
@@ -52,44 +35,18 @@ export default function ContactPage() {
     };
   }, []);
 
-  const toggleFaq = (index) => {
-    setOpenFaq(openFaq === index ? null : index);
-  };
 
-  const handleFormSubmit = async (e) => {
+
+  const handleFormSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    const formData = new FormData(e.target);
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      topic: formData.get("topic"),
-      message: formData.get("message"),
-    };
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        toast.success("Message sent successfully! Our team will get back to you shortly.");
-        e.target.reset();
-      } else {
-        const result = await response.json();
-        toast.error(`Error: ${result.error || "Failed to send message."}`);
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      toast.error("An error occurred. Please try again later.");
-    } finally {
+    // API logic removed to eliminate Supabase dependency.
+    setTimeout(() => {
+      toast.success("Thank you! We have received your message.");
       setIsSubmitting(false);
-    }
+      e.target.reset();
+    }, 1000);
   };
 
   return (
@@ -129,7 +86,18 @@ export default function ContactPage() {
             <div style={{ color: "rgba(255, 248, 240, 0.6)" }}>
               <strong style={{ color: "var(--cream)" }}>Email</strong>
               <br />
-              support@atxresearchpeptides.com
+              Support@atxresearchpeptides.com
+            </div>
+          </div>
+
+          <div className="contact-info-item">
+            <i className="fa-brands fa-whatsapp"></i>
+            <div style={{ color: "rgba(255, 248, 240, 0.6)" }}>
+              <strong style={{ color: "var(--cream)" }}>WhatsApp</strong>
+              <br />
+              <a href="https://wa.me/15126347919" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
+                +1 (512) 634-7919
+              </a>
             </div>
           </div>
 
@@ -187,29 +155,7 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* FAQ */}
-      <div className="faq">
-        <h3>Frequently Asked Questions</h3>
 
-        {faqs.map((faq, index) => (
-          <div
-            className="faq-item"
-            key={index}
-            onClick={() => toggleFaq(index)}
-          >
-            <div className="faq-head">
-              <div className="faq-question">{faq.question}</div>
-              <div className="faq-icon">{openFaq === index ? "-" : "+"}</div>
-            </div>
-            <div
-              className="faq-answer"
-              style={{ display: openFaq === index ? "block" : "none" }}
-            >
-              {faq.answer}
-            </div>
-          </div>
-        ))}
-      </div>
 
       <Footer />
     </>

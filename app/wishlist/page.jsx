@@ -47,7 +47,7 @@ export default function WishlistPage() {
               Start exploring our catalog to save your favorites.
             </p>
             <button 
-              onClick={() => window.location.href = '/all-products'}
+              onClick={() => window.location.href = '/'}
               className="mt-10 px-8 py-3 bg-[#6366f1] text-white font-bold rounded-xl font-['Bebas_Neue'] tracking-widest text-lg hover:bg-[#22d3ee] hover:text-black transition-all"
             >
               EXPLORE PRODUCTS

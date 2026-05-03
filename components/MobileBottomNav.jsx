@@ -9,7 +9,7 @@ const MobileBottomNav = () => {
   const { setIsMiniCartOpen, getCartCount } = useAppContext();
 
   const navItems = [
-    { name: "Products", icon: "fa-solid fa-flask-vial", path: "/all-products" },
+    { name: "Products", icon: "fa-solid fa-flask-vial", path: "/" },
     { name: "Cart", icon: "fa-solid fa-bag-shopping", isCart: true },
     { name: "Wishlist", icon: "fa-solid fa-heart", path: "/wishlist" },
     { name: "Orders", icon: "fa-solid fa-box", path: "/my-orders" },

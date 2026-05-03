@@ -266,63 +266,6 @@ nav {
   transform: translateY(-2px);
 }
 
-/* ==================================================
-   FAQ SECTION 
-   ================================================== */
-.faq {
-  max-width: 900px;
-  margin: 80px auto;
-  padding: 0 20px;
-  position: relative;
-  z-index: 2;
-}
-
-.faq h3 {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 3rem;
-  text-align: center;
-  color: var(--cream);
-  margin-bottom: 30px;
-}
-
-.faq-item {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 20px 0;
-  cursor: none;
-  transition: background 0.2s;
-}
-
-.faq-item:hover {
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.faq-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10px;
-}
-
-.faq-question {
-  font-weight: bold;
-  color: var(--cream);
-}
-
-.faq-icon {
-  color: var(--hot-pink);
-  font-size: 1.5rem;
-  font-weight: bold;
-  line-height: 1;
-}
-
-.faq-answer {
-  margin-top: 15px;
-  padding: 0 10px;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
-  display: none;
-  line-height: 1.6;
-}
 
 /* ==================================================
    RESPONSIVE
@@ -356,7 +299,5 @@ nav {
   .contact-box {
     padding: 24px;
   }
-  .faq h3 {
-    font-size: 2.2rem;
-  }
+
 }

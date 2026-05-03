@@ -90,7 +90,7 @@ export default function PrivacyPolicyPage() {
               <li>Opt out of marketing communications</li>
               <li>Request a copy of your data</li>
             </ul>
-            <p>To make a request, contact us at <a href="mailto:support@atxresearchpeptides.com" className="policy-email">support@atxresearchpeptides.com</a></p>
+            <p>To make a request, contact us at <a href="mailto:Support@atxresearchpeptides.com" className="policy-email">Support@atxresearchpeptides.com</a></p>
           </div>
 
           <div className="policy-section">
@@ -110,7 +110,7 @@ export default function PrivacyPolicyPage() {
 
           <div className="policy-section">
             <h3>12. Contact Information</h3>
-            <p>ATX Research Peptides<br/>India • Serving Worldwide<br/>Email: <a href="mailto:support@atxresearchpeptides.com" className="policy-email">support@atxresearchpeptides.com</a></p>
+            <p>ATX Research Peptides<br/>India • Serving Worldwide<br/>Email: <a href="mailto:Support@atxresearchpeptides.com" className="policy-email">Support@atxresearchpeptides.com</a></p>
           </div>
 
         </section>

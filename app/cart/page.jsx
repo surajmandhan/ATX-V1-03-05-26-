@@ -86,7 +86,7 @@ export default function CartPage() {
                 <div className="empty-cart-view">
                   <i className="fa-solid fa-cart-arrow-down"></i>
                   <h2>Your cart is empty</h2>
-                  <Link href="/all-products" className="shop-now-btn">Shop Now</Link>
+                  <Link href="/" className="shop-now-btn">Shop Now</Link>
                 </div>
               ) : (
                 cartProductIds.map(itemId => {

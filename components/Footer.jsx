@@ -14,11 +14,10 @@ const Footer = () => {
           <Link href="/" className="footer-logo-text">
             <img src={logoImg?.src || logoImg} alt="ATX Peptides Logo" style={{ maxHeight: "30px", width: "auto", objectFit: "contain" }} />
           </Link>
-          <span className="footer-dev-label">Research Grade</span>
         </div>
 
         <div className="footer-links">
-          <Link href="/all-products">Products</Link>
+          <Link href="/">Products</Link>
           <Link href="/about">About</Link>
           <Link href="/contact">Contact</Link>
           <Link href="#">© {new Date().getFullYear()}</Link>
@@ -26,11 +25,11 @@ const Footer = () => {
         </div>
 
         <div className="footer-contact">
-          <a href="mailto:support@atxresearchpeptides.com" className="footer-contact-btn btn-email">
-            <i className="fa-regular fa-envelope"></i> support@atxresearchpeptides.com
+          <a href="mailto:Support@atxresearchpeptides.com" className="footer-contact-btn btn-email">
+            <i className="fa-regular fa-envelope"></i> Support@atxresearchpeptides.com
           </a>
-          <a href="tel:1-800-555-0123" className="footer-contact-btn btn-phone">
-            <i className="fa-solid fa-phone"></i> 1-800-555-0123
+          <a href="https://wa.me/15126347919" target="_blank" rel="noopener noreferrer" className="footer-contact-btn btn-phone">
+            <i className="fa-brands fa-whatsapp"></i> +1 (512) 634-7919
           </a>
         </div>
       </div>

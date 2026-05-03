@@ -50,7 +50,7 @@ const MiniCart = ({ isOpen, onClose }) => {
                         <button
                             onClick={() => {
                                 onClose();
-                                router.push('/all-products');
+                                router.push("/");
                             }}
                             className="font-['Bebas_Neue'] text-xl tracking-widest py-3 px-8 rounded-full bg-[#6366f1] text-white hover:bg-[#22d3ee] hover:text-[#0b0b0f] transition-all transform hover:scale-105 cursor-pointer"
                         >

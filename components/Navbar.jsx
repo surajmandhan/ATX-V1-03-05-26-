@@ -68,7 +68,7 @@ const Navbar = () => {
           </Link>
 
           <ul className="nav-links">
-            <li className="hidden lg:block"><Link href="/all-products">Products</Link></li>
+            <li className="hidden lg:block"><Link href="/">Products</Link></li>
 
 
             <li className="hidden lg:block"><Link href="/about">About</Link></li>

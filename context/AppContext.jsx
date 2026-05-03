@@ -21,13 +21,13 @@ export const AppContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [isMiniCartOpen, setIsMiniCartOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isCartLoaded, setIsCartLoaded] = useState(false);
 
   // 1. Fetch Products from Shopify
   const fetchProducts = async () => {
     try {
       setIsLoading(true);
       const shopifyProducts = await getAllProducts();
-      console.log("Fetched Products:", shopifyProducts);
       setProducts(shopifyProducts);
     } catch (error) {
       console.error("Error fetching Shopify products:", error);
@@ -53,12 +53,15 @@ export const AppContextProvider = (props) => {
     const savedCart = localStorage.getItem("atx_cart");
     if (savedCart) {
       try {
-        setCartItems(JSON.parse(savedCart));
+        const parsed = JSON.parse(savedCart);
+        if (parsed && typeof parsed === 'object') {
+          setCartItems(parsed);
+        }
       } catch (e) {
-        setCartItems({});
+        console.error("Error parsing cart:", e);
       }
     }
-
+    setIsCartLoaded(true);
     fetchProducts();
   }, []);
 
@@ -86,52 +89,45 @@ export const AppContextProvider = (props) => {
   }, [customerToken]);
 
 
-  // 3. Save Cart to LocalStorage whenever it changes
+  // 3. Save Cart to LocalStorage whenever it changes (only after initial load)
   useEffect(() => {
+    if (!isCartLoaded) return;
+
     if (Object.keys(cartItems).length > 0) {
       localStorage.setItem("atx_cart", JSON.stringify(cartItems));
     } else {
       localStorage.removeItem("atx_cart");
     }
-  }, [cartItems]);
+  }, [cartItems, isCartLoaded]);
 
   const clearCart = () => {
     setCartItems({});
     localStorage.removeItem("atx_cart");
   };
 
-  const addToCart = async (itemId) => {
-    let cartData = structuredClone(cartItems);
-    if (cartData[itemId]) {
-      cartData[itemId] += 1;
-    } else {
-      cartData[itemId] = 1;
-    }
-    setCartItems(cartData);
+  const addToCart = (itemId) => {
+    setCartItems(prev => {
+      const newData = { ...prev };
+      newData[itemId] = (newData[itemId] || 0) + 1;
+      return newData;
+    });
     toast.success("Added to cart");
   };
 
-  const updateCartQuantity = async (itemId, quantity) => {
-    let cartData = structuredClone(cartItems);
-    if (quantity <= 0) {
-      delete cartData[itemId];
-    } else {
-      cartData[itemId] = quantity;
-    }
-    setCartItems(cartData);
-    if (Object.keys(cartData).length === 0) {
-      localStorage.removeItem("atx_cart");
-    }
+  const updateCartQuantity = (itemId, quantity) => {
+    setCartItems(prev => {
+      const newData = { ...prev };
+      if (quantity <= 0) {
+        delete newData[itemId];
+      } else {
+        newData[itemId] = quantity;
+      }
+      return newData;
+    });
   };
 
   const getCartCount = () => {
-    let totalCount = 0;
-    for (const items in cartItems) {
-      if (cartItems[items] > 0) {
-        totalCount += cartItems[items];
-      }
-    }
-    return totalCount;
+    return Object.values(cartItems).reduce((acc, qty) => acc + (Number(qty) || 0), 0);
   };
 
   const getCartAmount = () => {
