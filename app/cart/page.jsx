@@ -75,44 +75,10 @@ export default function CartPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0b0b0f] text-white">
-      <link
-        rel="stylesheet"
-      />
-      <link
-        rel="stylesheet"
-      />
-
       <Navbar />
 
       <main className="cart-main-wrapper">
         <div className="cart-container">
-          {/* MOBILE HEADER */}
-          <div className="cart-header-mobile">
-            <button className="back-btn" onClick={() => router.back()}>
-              <i className="fa-solid fa-chevron-left"></i>
-            </button>
-            <h1 className="cart-main-title">My Cart</h1>
-            <div className="cart-header-spacer"></div>
-          </div>
-
-
-          {/* DELIVERY LOCATION */}
-          <div className="delivery-section">
-            <div className="delivery-info">
-              <span className="delivery-label">Delivery Location</span>
-              <h3 className="delivery-name">{shippingAddress ? 'Home' : 'Not Set'}</h3>
-            </div>
-            <button 
-              className="change-loc-btn"
-              onClick={() => {
-                setCurrentAddress(shippingAddress);
-                setIsAddressModalOpen(true);
-              }}
-            >
-              {shippingAddress ? 'Change Location' : 'Add Address'}
-            </button>
-          </div>
-
           <div className="cart-grid">
             {/* LEFT: CART ITEMS */}
             <div className="cart-items-column">
@@ -165,7 +131,6 @@ export default function CartPage() {
             <div className="cart-summary-column">
               <OrderSummary />
             </div>
-
           </div>
         </div>
       </main>

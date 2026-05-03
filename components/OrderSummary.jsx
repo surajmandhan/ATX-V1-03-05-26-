@@ -14,22 +14,10 @@ const OrderSummary = () => {
 
   const [orderStatus, setOrderStatus] = useState("idle"); // idle, processing, success, error
 
-  const handlePlaceOrder = async () => {
-    if (!customerToken) {
-      toast.error("Please login to proceed with checkout");
-      window.location.href = "/login?redirect=cart";
-      return;
-    }
-    setOrderStatus("processing");
-    try {
-      await processCheckout();
-      setOrderStatus("success");
-    } catch (error) {
-      setOrderStatus("error");
-      toast.error("Checkout failed. Please try again.");
-      setTimeout(() => setOrderStatus("idle"), 2500);
-    }
+  const handlePlaceOrder = () => {
+    window.location.href = "/checkout-custom";
   };
+
 
   return (
     <>
@@ -118,20 +106,13 @@ const OrderSummary = () => {
         </div>
       </div>
 
-      {!customerToken && (
-        <div className="mt-8 p-4 bg-[#ff0060]/10 border border-[#ff0060]/20 rounded-2xl animate-pulse">
-          <p className="text-[#ff0060] font-['Bebas_Neue'] text-lg tracking-widest text-center">
-            PLEASE LOGIN BEFORE CHECKOUT
-          </p>
-        </div>
-      )}
-
       <button
         onClick={handlePlaceOrder}
-        className={`w-full ${!customerToken ? 'mt-4' : 'mt-8'} font-['Bebas_Neue'] text-2xl tracking-widest py-4 rounded-xl bg-[#6366f1] text-white hover:bg-[#ff0060] transition-all transform hover:scale-[1.02] shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(255,0,96,0.5)] cursor-pointer border-none`}
+        className="w-full mt-8 font-['Bebas_Neue'] text-2xl tracking-widest py-4 rounded-xl bg-[#6366f1] text-white hover:bg-[#ff0060] transition-all transform hover:scale-[1.02] shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(255,0,96,0.5)] cursor-pointer border-none"
       >
-        {customerToken ? 'Proceed to Payment →' : 'LOGIN TO CHECKOUT →'}
+        {customerToken ? 'PROCEED TO PAYMENT →' : 'CHECKOUT AS GUEST →'}
       </button>
+
       </div>
     </>
   );

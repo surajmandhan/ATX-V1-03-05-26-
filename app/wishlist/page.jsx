@@ -3,7 +3,7 @@ import React from "react";
 import { useAppContext } from "@/context/AppContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ProductCard from "@/components/ProductCard";
+import CatalogCard from "@/components/CatalogCard";
 import "../home.css";
 
 
@@ -33,8 +33,8 @@ export default function WishlistPage() {
         ) : wishlistedProducts.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8 justify-items-center">
 
-            {wishlistedProducts.map((product) => (
-              <ProductCard key={product._id} product={product} />
+            {wishlistedProducts.map((product, index) => (
+              <CatalogCard key={product._id} product={product} index={index} />
             ))}
           </div>
         ) : (

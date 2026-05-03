@@ -126,7 +126,13 @@ const Navbar = () => {
                   </div>
                 </div>
               ) : (
-                <Link href="/login" style={{cursor:'pointer'}}>Login</Link>
+                <Link href="/login" className="flex items-center gap-2 text-white hover:text-[#6366f1] transition-all py-1 px-3 rounded-lg hover:bg-white/5">
+                  <i className="fa-solid fa-right-to-bracket text-3xl lg:hidden text-[#6366f1]"></i>
+                  <span className="hidden lg:inline font-['Space_Mono'] text-xs uppercase tracking-widest">Login</span>
+                </Link>
+
+
+
               )}
             </li>
           </ul>

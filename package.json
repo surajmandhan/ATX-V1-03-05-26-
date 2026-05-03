@@ -14,9 +14,11 @@
     "axios": "^1.8.4",
     "cloudinary": "^2.6.0",
     "inngest": "^4.2.6",
+    "jose": "^6.2.3",
     "lottie-react": "^2.4.1",
     "mongoose": "^8.13.1",
     "next": "15.2.8",
+    "nodemailer": "^8.0.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.1"

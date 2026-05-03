@@ -20,6 +20,10 @@ import heart_icon from "./heart_icon.svg";
 import star_icon from "./star_icon.svg";
 import redirect_icon from "./redirect_icon.svg";
 import star_dull_icon from "./star_dull_icon.svg";
+import cash_app_qr from "./logos/CashApp.png";
+import venmo_qr from "./logos/VenmoApp.png";
+import cash_app_logo from "./logos/cashapp logo.png";
+import venmo_logo from "./logos/venmo logo.png";
 
 // Placeholder images to replace corrupted files
 export const placeholder = "/no-image-placeholder.png";
@@ -48,6 +52,10 @@ export const assets = {
   star_icon,
   redirect_icon,
   star_dull_icon,
+  cash_app_qr,
+  venmo_qr,
+  cash_app_logo,
+  venmo_logo,
   upload_area: placeholder,
   md_controller_image: "https://picsum.photos/seed/controller1/800/800",
   sm_controller_image: "https://picsum.photos/seed/controller2/800/800",

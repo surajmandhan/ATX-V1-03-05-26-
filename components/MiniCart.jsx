@@ -8,8 +8,9 @@ const MiniCart = ({ isOpen, onClose }) => {
 
     const handleCheckout = () => {
         onClose();
-        router.push('/cart');
+        router.push('/checkout-custom');
     };
+
 
     const cartProductIds = Object.keys(cartItems);
 
@@ -68,36 +69,60 @@ const MiniCart = ({ isOpen, onClose }) => {
                                 const displayPrice = variant ? variant.displayPrice : product.displayPrice;
                                 const displaySize = variant ? variant.size : product.size;
                                 return (
-                                    <div key={itemId} className="flex items-center gap-4 bg-white/5 p-3 rounded-2xl border border-white/5">
-                                        <div className="w-[70px] h-[70px] relative rounded-xl overflow-hidden bg-[#13131a] border border-white/10 flex-shrink-0 flex items-center justify-center">
+                                    <div key={itemId} className="flex items-stretch bg-white/5 rounded-2xl border border-white/5 overflow-hidden h-32 flex-shrink-0">
+                                        {/* Image Section */}
+                                        <div className="w-28 bg-black/40 flex-shrink-0 flex items-center justify-center border-r border-white/5">
                                             <Image 
                                                 src={product.image?.[0] || placeholder} 
                                                 alt={product.name} 
-                                                width={70} 
-                                                height={70} 
+                                                width={112} 
+                                                height={112} 
                                                 className="object-cover h-full w-full" 
                                             />
                                         </div>
-                                        <div className="flex-grow">
-                                            <p className="font-['Bebas_Neue'] text-xl tracking-wider text-[#e6e6eb] leading-tight m-0">{product.name}</p>
-                                            <p className="text-xs text-[#22d3ee] font-['Space_Mono'] mt-1">{displaySize} &nbsp;•&nbsp; {currency}{displayPrice ? displayPrice.replace('$', '') : ''}</p>
+
+                                        {/* Info Section - Balanced vertical distribution */}
+                                        <div className="flex-grow p-4 flex flex-col justify-between min-w-0">
+                                            <div>
+                                                <p className="font-['Bebas_Neue'] text-lg tracking-wider text-[#e6e6eb] leading-[1.1] m-0 line-clamp-2 uppercase">
+                                                    {product.name}
+                                                </p>
+                                                <p className="text-[10px] text-white/40 font-['Space_Mono'] uppercase tracking-tighter mt-1">
+                                                    Variant: <span className="text-[#22d3ee]">{displaySize}</span>
+                                                </p>
+                                            </div>
+                                            <p className="text-xl font-['Bebas_Neue'] text-[#6366f1] tracking-widest m-0 leading-none">
+                                                {currency}{displayPrice ? displayPrice.replace('$', '') : ''}
+                                            </p>
+                                        </div>
+
+
+
+
+                                        {/* Actions Section (Strict fixed split) */}
+                                        <div className="w-28 border-l border-white/5 flex flex-col h-full flex-shrink-0">
+                                            <button 
+                                                onClick={() => updateCartQuantity(itemId, 0)} 
+                                                className="h-16 w-full flex items-center justify-center text-white/20 hover:bg-[#ff0060]/10 hover:text-[#ff0060] transition-all border-b border-white/5 cursor-pointer"
+                                                title="Remove Item"
+                                            >
+                                                <i className="fa-solid fa-trash-can text-sm"></i>
+                                            </button>
                                             
-                                            <div className="flex items-center mt-3">
-                                                <div className="flex items-center border border-white/20 rounded-full px-1 py-0.5 bg-black/30">
-                                                    <button onClick={() => updateCartQuantity(itemId, quantity - 1)} className="w-6 h-6 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 rounded-full transition-colors cursor-pointer">-</button>
-                                                    <span className="px-2 text-xs font-bold text-white w-8 text-center">{quantity}</span>
-                                                    <button onClick={() => updateCartQuantity(itemId, quantity + 1)} className="w-6 h-6 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 rounded-full transition-colors cursor-pointer">+</button>
+                                            <div className="h-16 w-full flex items-center justify-center px-2 bg-black/20">
+                                                <div className="flex items-center w-full justify-between gap-1">
+                                                    <button onClick={() => updateCartQuantity(itemId, quantity - 1)} className="w-6 h-6 flex items-center justify-center text-white/40 hover:text-white transition-colors cursor-pointer text-sm">−</button>
+                                                    <span className="text-xs font-bold text-[#6366f1] font-['Space_Mono']">{quantity}</span>
+                                                    <button onClick={() => updateCartQuantity(itemId, quantity + 1)} className="w-6 h-6 flex items-center justify-center text-white/40 hover:text-white transition-colors cursor-pointer text-sm">+</button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <button 
-                                            onClick={() => updateCartQuantity(itemId, 0)} 
-                                            className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 text-white/40 hover:bg-[#ff0060] hover:text-white transition-all mr-1 cursor-pointer"
-                                            title="Remove Item"
-                                        >
-                                            <i className="fa-solid fa-trash-can text-xs"></i>
-                                        </button>
                                     </div>
+
+
+
+
+
                                 );
                             })}
                         </div>
@@ -107,12 +132,21 @@ const MiniCart = ({ isOpen, onClose }) => {
                                 <span className="text-white/60 font-['Space_Mono'] text-sm uppercase tracking-widest">Subtotal</span>
                                 <span className="text-3xl font-['Bebas_Neue'] text-[#22d3ee] tracking-widest">{currency}{getCartAmount().toFixed(2)}</span>
                             </div>
-                            <button 
-                                onClick={handleCheckout} 
-                                className="w-full font-['Bebas_Neue'] text-xl tracking-widest py-4 px-8 rounded-full bg-[#6366f1] text-white hover:bg-[#ff0060] transition-all transform hover:scale-[1.02] shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(255,0,96,0.6)] cursor-pointer"
-                            >
-                                Proceed to Checkout
-                            </button>
+                            <div className="grid grid-cols-2 gap-3">
+                                <button 
+                                    onClick={() => { onClose(); router.push('/cart'); }} 
+                                    className="w-full font-['Bebas_Neue'] text-lg tracking-widest py-3 px-4 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all cursor-pointer"
+                                >
+                                    VIEW CART
+                                </button>
+                                <button 
+                                    onClick={handleCheckout} 
+                                    className="w-full font-['Bebas_Neue'] text-lg tracking-widest py-3 px-4 rounded-xl bg-[#6366f1] text-white hover:bg-[#ff0060] transition-all shadow-[0_0_20px_rgba(99,102,241,0.3)] cursor-pointer"
+                                >
+                                    CHECKOUT
+                                </button>
+                            </div>
+
                         </div>
                     </>
                 )}

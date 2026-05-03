@@ -643,3 +643,17 @@ html body button.cl-formButtonPrimary:hover,
   }
 }
 
+
+.rounded-xl {
+  border-radius: 1.75rem !important;
+}
+
+.rounded-2xl {
+  border-radius: 2rem !important;
+}
+
+.w-14 {
+  width: 6.5rem !important;
+}
+
+
